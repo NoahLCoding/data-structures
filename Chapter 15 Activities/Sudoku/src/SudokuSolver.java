@@ -140,6 +140,18 @@ public class SudokuSolver {
         return str;
     }
 
+    public int mapCellToSquare(int row, int col)
+    {
+        /*
+         * Given the specific row and column in the grid, return the index for the
+         *  corresponding square set in the list
+        */ 
+
+        // ...
+
+        return 0;
+    }
+
     public static void main(String[] args) {
         String fileName = "src/puzzle1.txt";
 
