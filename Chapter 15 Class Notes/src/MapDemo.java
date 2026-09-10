@@ -11,5 +11,31 @@ public class MapDemo
 {
     public static void main(String[] args)
     {
+        /*
+            The Map interface is generic.
+            The first type is the key.
+            The second type is the value.
+        */
+        Map<String, Color> favColors = new HashMap<>();
+
+        // Add elements to the map using the put method
+        favColors.put("Jason", Color.BLUE);
+        favColors.put("Evan", Color.GREEN);
+        favColors.put("Emily", Color.RED);
+        favColors.put("Ugh", Color.BLUE);
+        favColors.put("VII", Color.BLACK);
+        // Two different elements can have the same value
+        favColors.put("Ethan", Color.GREEN);
+
+        // The same key cannot have two different values
+        // using put on a key that already exists, changes the value
+        favColors.put("Emily", Color.ORANGE);
+
+        // Create a set of the keys in the map
+        Set<String> keys = favColors.keySet();
+        for (String key: keys){
+            // [name] ([hashCode] : [color])
+            System.out.println(key + " (" + key.hashCode() + ") ------ (" + favColors.get(key)+ ")");
+        }
     }
 }
