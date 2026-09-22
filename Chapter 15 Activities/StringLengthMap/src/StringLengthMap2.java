@@ -1,5 +1,5 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 /**
  * Read all words from a file and add them to a
  * map whose keys are word lengths and whose values
@@ -10,9 +10,9 @@ import java.io.*;
  */
 public class StringLengthMap2
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws FileNotFoundException
     {
-        String filename = "C:\\Users\\nnlatakas\\Desktop\\Software Engineering\\data-structures\\Chapter 15 Activities\\StringLengthMap\\src\\test1.txt";
+        String filename = "C:\\Users\\noahn\\OneDrive\\Desktop\\Software\\data-structures\\Chapter 15 Activities\\StringLengthMap\\src\\test2.txt";
         Map<Integer , String> words = new HashMap<>();
         try (Scanner in = new Scanner(new File(filename)))
         {
@@ -27,8 +27,7 @@ public class StringLengthMap2
 
                 // Update the map here
                 // Use the Java 8 merge() method
-                words.merge(len, word, (words.get(len), word))
-
+                words.merge(len, word, (existing, newWord) -> existing+ ", " + newWord);
 
             }
 
@@ -39,8 +38,6 @@ public class StringLengthMap2
                 System.out.println(key + " : " + words.get(key));
             }
 
-
-            }
 
             // Print the strings, in increasing order of their length
             // Use this format: 1: i, a, i

@@ -1,5 +1,5 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 /**
  * Read all words from a file and add them to a map
  * whose keys are the first letters of the words and
@@ -12,29 +12,32 @@ public class FirstLetterMap
 {
     public static void main(String[] args)
     {
-        String filename = "src/test1.txt";
+        String filename = "C:\\Users\\noahn\\OneDrive\\Desktop\\Software\\data-structures\\Chapter 15 Activities\\FirstLetterMap\\FirstLetterMap2\\src\\test1.txt";
 
         try (Scanner in = new Scanner(new File(filename)))
         {
 
-            // Create your map here
-            ...
-
+            Map<Character, Set<String>> words = new HashMap<>();
             while (in.hasNext())
             {
                 String word = clean(in.next());
                 Character c = word.charAt(0);
 
-                // Update the map here
-                // Modify Worked Example 15.1
-                . . .
-
+                if(words.get(c) == null){
+                    Set<String> temp = new HashSet<>();
+                    temp.add(word);
+                    words.put(c, temp);
+                }
+                else{
+                    words.get(c).add(word);
+                }
 
             }
-
-            // Print the map here in this form
-            // a: [a, able, aardvark]
-            . . .
+            Set<Character> keys = words.keySet();
+            for (Character key: keys){
+                System.out.println(key + ": " + words.get(key));
+            }
+            
         } catch (FileNotFoundException e)
         {
             System.out.println("Cannot open: " + filename);
