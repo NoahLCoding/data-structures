@@ -19,8 +19,6 @@ public class LinkedList
         this.head = null;
     }
 
-
-
     /**
         Returns the first element in the linked list.
         @return the first element in the linked list
@@ -30,15 +28,18 @@ public class LinkedList
         return null;
     }
 
-
-
     /**
         Removes the first element in the linked list.
         @return the removed element
     */
-
-
-
+    public Object removeFirst(){
+        if (this.head == null){
+            throw new NoSuchElementException();
+        }
+        Object element = this.head.data;
+        this.head = this.head.next;
+        return element;
+    }
 
 
     /**
@@ -52,23 +53,33 @@ public class LinkedList
          this.head = newNode;
     }
 
-
-
     /**
         Returns an iterator for iterating through this list.
         @return an iterator for iterating through this list
     */
-
-    public Object removeFirst(){
-        if (this.head == null){
-            throw new NoSuchElementException();
-        }
-        Object element = this.head.data;
-        this.head = this.head.next;
-        return element;
+    public ListIterator listIterator(){
+        return new LinkedListIterator();
     }
 
+    public String toString(){
+        if (head == null){
+            return "[]";
+        }
 
+        // StringBuilder is mutable
+        // It is more efficient for manipulating strings
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+
+        Node current = head;
+        while (current !=null){
+            if(current.next==null) sb.append(current.data);
+            else sb.append(current.data + ", ");
+            current = current.next;
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 
     //Class Node
     //Node is static because it does NOT need to access anything in LinkedList
@@ -117,9 +128,6 @@ public class LinkedList
             return position.data;
         }
 
-
-
-
         /**
             Tests if there is an element after the iterator position.
             @return true if there is an element after the iterator position
@@ -132,7 +140,6 @@ public class LinkedList
             // the iterator has moved so check the next node
             return position.next != null;
        }
-
 
         /**
             Adds an element before the iterator position
@@ -159,10 +166,6 @@ public class LinkedList
 
        }
 
-
-
-
-
         /**
             Removes the last traversed element. This method may
             only be called after a call to the next() method.
@@ -186,18 +189,18 @@ public class LinkedList
             isAfterNext = false;
         }
 
-
-
-
-
-
         /**
             Sets the last traversed element to a different value.
             @param element the element to set
         */
-
-
-
+        public void set(Object element){
+            if(!isAfterNext){
+                throw new IllegalStateException();
+            }
+            position.data = element;
+        
+        //we don't have to reset isAfterNext because the structure of the list has not changed
+        }
 
     }//LinkedListIterator
 }//LinkedList
