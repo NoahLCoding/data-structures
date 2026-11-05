@@ -24,8 +24,10 @@ public class LinkedList
         @return the first element in the linked list
     */
     public Object getFirst(){
-        
-        return null;
+        if (this.head == null){
+            throw new NoSuchElementException();
+        }
+        return this.head.data;
     }
 
     /**
